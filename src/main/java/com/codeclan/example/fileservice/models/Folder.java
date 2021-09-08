@@ -1,5 +1,7 @@
 package com.codeclan.example.fileservice.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,15 +17,15 @@ public class Folder {
     @Column(name = "title")
     private String title;
 
-
+    @OneToMany(mappedBy = "folder")
+    @JsonIgnoreProperties({"folder"})
     private List<File> files;
 
-
-    private User user;
+//    private User user;
 
     public Folder(String title, User user) {
         this.title = title;
-        this.user = user;
+//        this.user = user;
         this.files = new ArrayList<>();
     }
 
@@ -55,11 +57,11 @@ public class Folder {
         this.files = files;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 }
